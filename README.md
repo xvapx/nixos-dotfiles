@@ -5,12 +5,12 @@ nixos-dotfiles
 This is a work in progress and might fail and destroy the world.
 ---------------------------------------------------------------
 
-To use this, clone this repo and modify default.nix to point to your dotfiles.    
-If yor dotfiles are local, you can use this:
+To use this, clone this repository and modify default.nix to point to your dotfiles.    
+If your repository is local, you can use this:
 ~~~~
 user = callPackage ./user { };
 ~~~~
-and if you have them on github, you can use this:
+and if you have it on github, you can use this:
 ~~~~
 usersrc = pkgs.fetchFromGitHub {
   owner = "yourGithubUser"; 
@@ -25,7 +25,7 @@ Then you can add this to your configuration.nix:
 ~~~~
 dotfiles = import (/path/to/nixos-dotfiles) {};
 ~~~~
-to import your local clone of this repo, or 
+to import your local clone of your dotfiles repository, or 
 ~~~~
 dotfiles = import (fetchTarball https://github.com/yourGithubUser/yourGithubRepo/archive/master.tar.gz) {};
 ~~~~
