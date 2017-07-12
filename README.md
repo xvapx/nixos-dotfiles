@@ -12,12 +12,14 @@ user = callPackage ./user { };
 ~~~~
 and if you have them on github, you can use this:
 ~~~~
-user = pkgs.fetchFromGitHub { 
+usersrc = pkgs.fetchFromGitHub {
   owner = "yourGithubUser"; 
   repo = "yourGithubRepo";
   rev = "githubRevision";
   sha256 = "revisionSha256";
 };
+
+user = callPackage usersrc { };
 ~~~~
 Then you can add this to your configuration.nix:
 ~~~~
