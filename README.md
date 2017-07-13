@@ -10,7 +10,7 @@ If your dotfiles repository is local, you can use this:
 ~~~~
 user = callPackage /path/to/user { };
 ~~~~
-and if you have it on github, you can use this:
+and if you have it on github, you can use this to use a specific commit:
 ~~~~
 usersrc = pkgs.fetchFromGitHub {
   owner = "yourGithubUser"; 
@@ -20,6 +20,10 @@ usersrc = pkgs.fetchFromGitHub {
 };
 
 user = callPackage usersrc { };
+~~~~
+or this to use a branch:
+~~~~
+usersrc = fetchTarball https://github.com/yourGithubUser/yourGithubRepo/archive/branch.tar.gz;
 ~~~~
 You will need to have a default.nix listing your dotfiles in your dotfiles repository,
 you can use as an example my dotfiles located at [this repository](https://github.com/xvapx/dotfiles).    
