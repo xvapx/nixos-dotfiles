@@ -21,7 +21,8 @@ usersrc = pkgs.fetchFromGitHub {
 
 user = callPackage usersrc { };
 ~~~~
-You can use as an example my dotfiles located at [this repository](https://github.com/xvapx/dotfiles).    
+You will need to have a default.nix listing your dotfiles in your dotfiles repository,
+you can use as an example my dotfiles located at [this repository](https://github.com/xvapx/dotfiles).    
 Then you can add this to your configuration.nix:
 ~~~~
 dotfiles = import (/path/to/nixos-dotfiles) {};
