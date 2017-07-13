@@ -24,6 +24,8 @@ user = callPackage usersrc { };
 or this to use a branch:
 ~~~~
 usersrc = fetchTarball https://github.com/yourGithubUser/yourGithubRepo/archive/branch.tar.gz;
+
+user = callPackage usersrc { };
 ~~~~
 You will need to have a default.nix listing your dotfiles in your dotfiles repository,
 you can use as an example my dotfiles located at [this repository](https://github.com/xvapx/dotfiles).    
