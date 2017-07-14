@@ -5,7 +5,7 @@ This project provides a way to deploy multiple users dotfiles to their home dirs
 
 Warning
 --------
-This is a work in progress and has **NOT** been tested enough to be considered stable. 
+This is a work in progress and has **NOT** been tested enough to be considered stable.     
 I'm currently using it, but there is no guarantee it won't destroy your system.
 
 How does nixos-dotfiles work
@@ -15,7 +15,7 @@ and then symlinks the content of each package to the specified folders, each sys
 
 How to use nixos-dotfiles
 -------------------------
-1. Clone nixos-dotfiles
+1. Clone nixos-dotfiles.    
 First you need to clone this repository and replace my users for yours and their dotfiles repositories in default.nix.
 
 To add a local repository, add this:
@@ -41,17 +41,17 @@ user3src = fetchTarball https://github.com/yourGithubUser/yourGithubRepo/archive
 user3 = callPackage usersrc { };
 ~~~~
 
-2. Add a default.nix to your dotfiles repository
+2. Add a default.nix to your dotfiles repository.    
 You will need to add a default.nix to each of your dotfiles repositories, listing all the files to copy to the nix store.
-you can use as an example my [default.nix](https://github.com/xvapx/dotfiles/blob/master/default.nix) on my [dotfiles repository](https://github.com/xvapx/dotfiles).
+you can use as an example my [default.nix](https://github.com/xvapx/dotfiles/blob/master/default.nix) on my [dotfiles repository](https://github.com/xvapx/dotfiles).    
 I prefer manually listing some files, but you can easily copy everything in your dotfiles folder if you want.
 
-3. Import your nixos-dotfiles clone as a NixOS channel and install your user packages
+3. Import your nixos-dotfiles clone as a NixOS channel and install your user packages.    
 As you can see in [this configuration.nix](https://github.com/xvapx/dotfiles/blob/master/nixos/machines/xvapx-homestation.nix), I have [a channels file](https://github.com/xvapx/dotfiles/blob/master/nixos/software/channels.nix) in which I import my nixos-dotfiles repository using this line:
 ~~~~
 dotfiles = import (fetchTarball https://github.com/xvapx/nixos-dotfiles/archive/master.tar.gz) {};
 ~~~~
-you can instead import a local reposiroty using this way:
+you can instead import a local repository using this way:
 ~~~~
 dotfiles = import (/path/to/your/nixos-dotfiles) {};
 ~~~~
@@ -71,7 +71,7 @@ environment.systemPackages = with pkgs; with channels;[
   dotfiles.user2
   dotfiles.user3
 ~~~~
-With all the dotfiles installed in the nix store, the only thing to do now is symlink the dotfiles to each user's home.
+4. symlink the dotfiles to each user's home.    
 I do it each system activation (each boot or nixos-rebuild switch) with this in my configuration.nix:
 ~~~~
   system.activationScripts = with pkgs; with channels;{
@@ -102,10 +102,18 @@ I do it each system activation (each boot or nixos-rebuild switch) with this in 
     '';
   };
 ~~~~
-To use this activation script you only need to change the user name and home.
-**This will replace any file with a symlink to the corresponding file in the nix store**.
-The script should make a backup of all the files it replaces, appending ~ to their name, but **you can still lose your dotfiles if something goes wrong**.
-to disable the automatic backup, deplace ~~~~ ln -s -b -v $1/$f $2/$f; ~~~~ for ~~~~ ln -s -v $1/$f $2/$f; ~~~~ in the linkdir function.
+To use this activation script you only need to change the user name and home.    
+**This will replace any file with a symlink to the corresponding file in the nix store**.    
+The script should make a backup of all the files it replaces, appending ~ to their name, but **you can still lose your dotfiles if something goes wrong**.    
+to disable the automatic backup, replace 
+~~~~
+ln -s -b -v $1/$f $2/$f; 
+~~~~
+for 
+~~~~
+ln -s -v $1/$f $2/$f; 
+~~~~
+in the linkdir function.
 
 PROS of this method:
 --------------------
