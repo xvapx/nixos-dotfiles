@@ -11,7 +11,7 @@ I'm currently using it, but there is no guarantee it won't destroy your system.
 How does nixos-dotfiles work
 ----------------------------
 nixos-dotfiles installs your dotfiles to the nix store as packages, 
-and then symlinks the content of the package to the specified folders each system activation.
+and then symlinks the content of each package to the specified folders, each system activation.
 
 How to use nixos-dotfiles
 -------------------------
