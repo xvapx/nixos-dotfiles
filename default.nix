@@ -8,11 +8,13 @@ let
   callPackage = pkgs.lib.callPackageWith (pkgs // self);
 
   self = rec {
-  	pkgconfig = callPackage ./pkgs/pkgconfig { };
+    pkgconfig = callPackage ./pkgs/pkgconfig { };
 
     xvapxsrc = fetchTarball https://github.com/xvapx/dotfiles/archive/master.tar.gz;
 
     xvapx = callPackage xvapxsrc { };
-	};
+
+    test = callPackage /mnt/projectes/dotfiles { };
+  };
 in
 self
