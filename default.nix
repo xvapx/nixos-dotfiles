@@ -13,8 +13,6 @@ let
     xvapxsrc = fetchTarball https://github.com/xvapx/dotfiles/archive/master.tar.gz;
 
     xvapx = callPackage xvapxsrc { };
-
-    test = callPackage /mnt/projectes/dotfiles { };
   };
 in
 self
